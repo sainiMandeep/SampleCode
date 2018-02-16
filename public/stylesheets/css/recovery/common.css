@@ -1,0 +1,205 @@
+/* line 1, ../../src/scss/recovery/common.scss */
+#profile.nav {
+  color: white;
+  margin-right: 40px; }
+
+/* line 6, ../../src/scss/recovery/common.scss */
+#search_serial {
+  margin-top: 0;
+  line-height: 18px; }
+
+/* line 10, ../../src/scss/recovery/common.scss */
+.icon-logo {
+  height: 40px;
+  width: 150px;
+  background-image: url("../../../images/ontraq_logo_white.svg");
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-top:6px; 
+  position: relative;}
+  
+.icon-logo:after {
+  content: '';
+  position: absolute;
+  width: 22%;
+  right: -2%;  
+  bottom: 20px;
+  border-bottom: 1.5px solid #88bbce;
+  transform: rotate(90deg);
+}
+
+/* line 14, ../../src/scss/recovery/common.scss */
+textarea {
+  height: 80px; }
+
+/* line 17, ../../src/scss/recovery/common.scss */
+form.fill-up input.small {
+  width: 40%; }
+
+/* line 20, ../../src/scss/recovery/common.scss */
+form.fill-up select.small {
+  width: 40%; }
+
+/* line 23, ../../src/scss/recovery/common.scss */
+.controls.check .control-label {
+  text-align: left;
+  width: auto;
+  padding-top: 0px; }
+
+/* line 28, ../../src/scss/recovery/common.scss */
+.controls.check input {
+  float: left;
+  margin-right: 6px; }
+
+/* line 32, ../../src/scss/recovery/common.scss */
+#container-notification {
+  height: 43px;
+  padding: 0 15px; }
+
+/* line 36, ../../src/scss/recovery/common.scss */
+#medications_items {
+  margin-top: 40px; }
+
+/* line 39, ../../src/scss/recovery/common.scss */
+#medications_items header {
+  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  height: 40px; }
+
+/* line 44, ../../src/scss/recovery/common.scss */
+#medications_items header .but {
+  margin-top: 6px; }
+
+/* line 47, ../../src/scss/recovery/common.scss */
+#medications_items .list {
+  margin-top: 10px;
+  border-top: 10px;
+  height: 200px;
+  overflow-y: scroll; }
+
+/* line 53, ../../src/scss/recovery/common.scss */
+#medications_items .list .nodata {
+  text-align: center;
+  margin-top: 100px; }
+
+/* line 57, ../../src/scss/recovery/common.scss */
+#medications_items .list .action {
+  text-decoration: underline;
+  cursor: pointer; }
+
+/* line 61, ../../src/scss/recovery/common.scss */
+#medications_items .list tr.rejected {
+  color: red; }
+
+/* line 64, ../../src/scss/recovery/common.scss */
+#medications_items .list .delete {
+  cursor: pointer; }
+
+/* line 67, ../../src/scss/recovery/common.scss */
+#medications_items .list .number {
+  width: 60px; }
+
+/* line 70, ../../src/scss/recovery/common.scss */
+#medications_items .list .add {
+  cursor: pointer; }
+
+/* line 73, ../../src/scss/recovery/common.scss */
+#medications_items .list .add.custom {
+  background: #d0f2f2; }
+
+/* line 76, ../../src/scss/recovery/common.scss */
+#medications_items .list .add.custom:hover {
+  background: #d0f2f2; }
+
+/* line 80, ../../src/scss/recovery/common.scss */
+.table-hover tbody tr.custom:hover {
+  background-color: #d0f2f2 !important; }
+
+/* line 83, ../../src/scss/recovery/common.scss */
+#favorites .name {
+  width: 40%; }
+
+/* line 86, ../../src/scss/recovery/common.scss */
+#favorites .package {
+  width: 30%; }
+
+/* line 89, ../../src/scss/recovery/common.scss */
+#favorites .category {
+  width: 20%; }
+
+/* line 92, ../../src/scss/recovery/common.scss */
+#favorites .ndc {
+  width: 10%; }
+
+/* line 95, ../../src/scss/recovery/common.scss */
+#manifest .name {
+  width: 00%; }
+
+/* line 98, ../../src/scss/recovery/common.scss */
+#manifest .package {
+  width: 30%; }
+
+/* line 101, ../../src/scss/recovery/common.scss */
+#manifest .bin {
+  width: 10%; }
+
+/* line 104, ../../src/scss/recovery/common.scss */
+#manifest .cat {
+  width: 10%; }
+
+/* line 107, ../../src/scss/recovery/common.scss */
+#manifest .qty {
+  width: 10%; }
+
+/* line 110, ../../src/scss/recovery/common.scss */
+#manifest .reject {
+  width: 10%; }
+
+/* line 113, ../../src/scss/recovery/common.scss */
+#manifest .del {
+  width: 10%; }
+
+/* line 116, ../../src/scss/recovery/common.scss */
+#customer_info .lab {
+  margin-right: 8px; }
+
+/* line 119, ../../src/scss/recovery/common.scss */
+.checkin_td {
+  width: 8%; }
+
+/* line 122, ../../src/scss/recovery/common.scss */
+.checkin_weight_td {
+  width: 6%; }
+
+/* line 125, ../../src/scss/recovery/common.scss */
+.checkin_date {
+  width: 10%; }
+
+/* line 128, ../../src/scss/recovery/common.scss */
+.checkin_notes {
+  width: 30%; }
+
+/* line 131, ../../src/scss/recovery/common.scss */
+table.dTable .type {
+  width: 10%; }
+
+/* line 134, ../../src/scss/recovery/common.scss */
+table.dTable .employee {
+  width: 10%; }
+
+/* line 137, ../../src/scss/recovery/common.scss */
+table.dTable .date {
+  width: 10%; }
+
+/* line 140, ../../src/scss/recovery/common.scss */
+table.dTable .weight {
+  width: 5%; }
+
+/* line 143, ../../src/scss/recovery/common.scss */
+table.dTable .notes {
+  width: 27.5%; }
+
+/* line 146, ../../src/scss/recovery/common.scss */
+table.dTable .id_number {
+  width: 10%; }
+

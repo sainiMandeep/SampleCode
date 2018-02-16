@@ -1,0 +1,41 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h6 id="modal-formLabel"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit Location of Destruction Bin</h6>
+</div>
+<div class="modal-body">
+	<?php echo $this->FormErrorHeader($this->form);?>
+	<form id='<?php echo $this->form->getId();?>' action='<?php echo $this->form->getAction();?>' method='<?php echo $this->form->getMethod();?>' class="separate-sections form-horizontal fill-up">
+		<?php echo $this->form->token;?>
+		<?php echo $this->FormEl($this->form->binlocation); ?>				
+	</form>
+</div>
+<div class="modal-footer">
+	<button id="<?php echo $this->form->getId();?>_close" class="btn btn-default" data-dismiss="modal">Close</button>
+	<button id="<?php echo $this->form->getId();?>_save" class="btn btn-blue" data-loading-text="Loading...">Save</button>
+</div>
+<script>
+$('#<?php echo $this->form->getId();?>_save').click(function() {
+	$(this).button('loading');			
+	$.post('<?php echo $this->form->getAction();?>', 
+			$('#<?php echo $this->form->getId();?>').serialize()
+	)	
+	.success(function(data, textStatus, jqXHR) {			
+		$('#modal-form').html(data);
+		if ($('#modal-form .alert-error').size() == 0) {
+			$('#modal-form').modal('hide');
+			location.reload();
+		    notification('Location has been successfully updated .','success',3000);
+	    }
+	})
+	.error(function() {
+	});
+});
+var jsonObj = $.parseJSON('<?php echo $this->locations;?>');
+var sourceArr = [];
+for (var i = 0; i < jsonObj.length; i++) {
+	 sourceArr.push(jsonObj[i].name);
+}
+	$('#binlocation').typeahead({		
+		source: sourceArr
+});
+</script>

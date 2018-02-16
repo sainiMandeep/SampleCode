@@ -1,0 +1,14 @@
+<?php
+if (isset($this->current)):
+	$menuHelper = $this->getHelper('Menu');
+	$menuOption = $menuHelper->specificmenu($this->current);
+?>
+<div id="breadcrumbs">
+    <div class="blue breadcrumb-button">
+        <span class="breadcrumb-label">
+            <i class="<?php echo $menuOption['icons'];?>"></i>&nbsp;<?php echo $menuOption['label'];?>
+        </span>
+        <span class="breadcrumb-arrow"><span></span></span>
+     </div>          
+</div>
+<?php endif; ?>

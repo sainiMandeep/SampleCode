@@ -1,0 +1,50 @@
+<div class="span12">	
+	<div class="box">
+			<div class="box-content">
+				<div id="dataTables">
+					<table class="dTable">  
+					 <thead> 
+						<tr>
+							<th class='checkin_td'>
+								<div>Type &nbsp;&nbsp;</div>
+							</th>
+							<th class='checkin_td'>
+								<div>Employee &nbsp;&nbsp;</div>
+							</th>
+							<th class='checkin_date'>
+								<div>Checkin Date &nbsp;&nbsp;&nbsp;</div>
+							</th>
+							<th class='checkin_weight_td'>
+								<div>Weight &nbsp;&nbsp;</div>
+							</th>
+							<th class='checkin_notes'>
+								<div>Checkin Notes</div>
+							</th>
+							<th class='checkin_notes'>
+								<div>General Notes</div>
+							</th>
+							<th>
+								<div>ID Number &nbsp;&nbsp;&nbsp;</div>
+							</th>
+						</tr>
+						</thead>
+						<tbody> 
+							<?php foreach ($this->recoveries as $key => $recovery): ?>
+							<tr>
+								<td class='checkin_td'><a href = "/index/scan/serial_number/<?php echo $recovery['serial_number']?>"><?php echo Application_Model_Recovery::mapNameType($recovery['recovery_type']); ?></a></td>
+								<td class='checkin_td'><?php echo $recovery['firstname'].' '.$recovery['lastname'] ?></td>
+								<td class='checkin_date'><?php echo $this->Date($recovery['checkin_date']) ?></td>
+								<td class='checkin_weight_td'><?php echo $recovery['weight'] ?></td>
+								<td class="checkin_notes"><?php echo $recovery['checkin_notes'] ?></td>
+								<td class='checkin_notes'><?php echo $recovery['general_notes'] ?></td>
+								<td><?php echo $recovery['serial_number'] ?></td>
+							</tr>	
+							<?php endforeach ?>
+						 </tbody> 
+					 </table>  
+				</div>
+			</div>
+		</div>
+</div>
+
+

@@ -1,0 +1,25 @@
+<div class="sidebar-background">
+	<div class="primary-sidebar-background"></div>
+</div>
+
+<div class="primary-sidebar">
+	<!-- Main nav -->
+	<ul class="nav">   
+	 <?php
+		$menus = $this->menu ();
+		$class = '';
+		foreach ( $menus as $menu ) :
+			if ($this->current == $menu ['id'] || $this->current ['menu'] == $menu ['id'])
+				$class = ' active';
+			else
+				$class = '';
+			?>				
+              <li class=" dark-nav <?php echo $class?>"
+			id="sidenav-<?php echo $menu['id']?>"><span class="glow"></span> <a
+			href="<?php echo $menu['href']?>"> <i
+				class="icon <?php echo $menu['icons'];?>"></i> <span
+				style="font-size: 14px;"> <?php echo $menu['label']; ?></span>
+		</a></li>
+             <?php endforeach;?>
+  	  </ul>
+</div>

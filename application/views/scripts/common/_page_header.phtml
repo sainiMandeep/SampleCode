@@ -1,0 +1,38 @@
+<?php
+$menuHelper = $this->getHelper ( 'Menu' );
+$pageheader = $this->current;
+if (! empty ( $pageheader )) {
+	if (is_array($pageheader)) {
+		if (isset($pageheader['menu']))
+			$menuOption = $menuHelper->specificmenu ( $pageheader['menu'] );
+		$menuOption = array_merge($menuOption,$pageheader);
+		$add_button = $pageheader['menu'];
+	}
+	else {
+		$menuOption = $menuHelper->specificmenu ( $pageheader );
+		$add_button = $pageheader;
+	}
+	?>
+<div class="pull-left header span4">
+	<h4 class="title">
+		<i style="margin-top: 0;color: #363f44; font-size: 22px;" class="<?php echo $menuOption['icons'];?>"></i>
+	    <?php echo $menuOption['label'];?>
+	</h4>
+	<h5 style="color:#565656;">
+	    <?php echo $menuOption['subtitle'];?>
+	</h5>
+</div>
+<?php  if (isset($menuOption['addnewbuttontitle'])):?>
+<div class="action-nav-normal">
+	<div class="row-fluid">
+	    <div class="span2 action-nav-button pull-right">
+	      <a data-toggle="modal" id="<?php echo 'add_'.$add_button;?>"  title="<?php echo $menuOption['addnewbuttontitle'];?>">
+	        <i class="<?php echo $menuOption['icons'] ?>"></i>
+	        <span><?php echo $menuOption['addnewbuttontitle'];?></span>
+	      </a>
+	      <span class="triangle-button green"><i class="icon-plus"></i></span>
+	    </div>	 
+	 </div>
+	 </div>
+	<?php endif; ?>
+<?php }?>

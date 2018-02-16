@@ -1,0 +1,37 @@
+<div class='box'>
+	<div class='box-header'>
+		<span class="title">Create a new item</span>
+	</div>
+	<div class='box-content padded'>
+		<div class="row">
+			<div class="span7">
+				<form id='<?php echo $this->form->getId();?>'
+					action='<?php echo $this->form->getAction();?>'
+					method='<?php echo $this->form->getMethod();?>'
+					class="separate-sections form-horizontal fill-up <?php echo $this->form->classValid ?>"
+					autocomplete="off">
+					<div>
+						<label for="checkin_date" class="control-label">Serial Number</label>
+						<div class="controls">
+							<input type="text" value="<?php echo $this->serial_number; ?>" class="small" readonly style='background:#E2DFDF' >
+						</div>
+					</div>				
+					<?php echo $this->FormEl($this->form->recovery_type);?>
+					<br />
+				</form>
+				<hr>
+				<div class='offset1'>
+					<button id="<?php echo $this->form->getId();?>_save"
+						class="btn btn-blue pull-right" data-loading-text="Loading...">Create Item</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+	$('#<?php echo $this->form->getId();?>_save').click(function() {
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+});
+</script>

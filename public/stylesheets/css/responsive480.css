@@ -1,0 +1,83 @@
+/*$link-color: #78808a; original bootstrap color*/
+@media (max-width: 480px) {
+  /* line 4, ../src/scss/responsive480.scss */
+  .area-top .num-stats li {
+    width: auto; }
+
+  /* line 8, ../src/scss/responsive480.scss */
+  .navbar .brand {
+    text-align: center;
+    width: 100%;
+    float: none; }
+
+  /* line 14, ../src/scss/responsive480.scss */
+  .navbar .nav.pull-right {
+    float: none;
+    *zoom: 1; }
+  /* line 24, ../src/scss/mixin_helpers.scss */
+  .navbar .nav.pull-right:before, .navbar .nav.pull-right:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  /* line 30, ../src/scss/mixin_helpers.scss */
+  .navbar .nav.pull-right:after {
+    clear: both; }
+
+  /* line 19, ../src/scss/responsive480.scss */
+  .navbar-inner {
+    text-align: center; }
+  /* line 22, ../src/scss/responsive480.scss */
+  .navbar-inner a {
+    margin-right: 0; }
+
+  /* line 27, ../src/scss/responsive480.scss */
+  .brand + .nav {
+    display: inline-block;
+    margin-bottom: 10px; }
+
+  /* line 33, ../src/scss/responsive480.scss */
+  .navbar-inverse .nav > li > a {
+    margin-right: 0; }
+  /* line 38, ../src/scss/responsive480.scss */
+  .navbar-inverse .brand + .nav > li > a {
+    margin-right: 10px; }
+  /* line 42, ../src/scss/responsive480.scss */
+  .navbar-inverse .brand + .nav > li:last-child a {
+    margin-right: 0; }
+
+  /* line 48, ../src/scss/responsive480.scss */
+  .area-top {
+    height: auto;
+    text-align: center; }
+  /* line 52, ../src/scss/responsive480.scss */
+  .area-top .header {
+    margin-top: 0;
+    margin-bottom: 7px;
+    text-align: center;
+    float: none; }
+  /* line 59, ../src/scss/responsive480.scss */
+  .area-top .num-stats {
+    float: none;
+    display: inline-block; }
+  /* line 63, ../src/scss/responsive480.scss */
+  .area-top .num-stats li {
+    padding: 5px; }
+
+  /* line 70, ../src/scss/responsive480.scss */
+  .chat-box.timeline .arrow-box-left {
+    margin-left: 0; }
+  /* line 73, ../src/scss/responsive480.scss */
+  .chat-box.timeline .arrow-box-left:after, .chat-box.timeline .arrow-box-left:before {
+    content: none; }
+  /* line 77, ../src/scss/responsive480.scss */
+  .chat-box.timeline .arrow-box-left .avatar {
+    left: 10px;
+    top: 5px; }
+  /* line 82, ../src/scss/responsive480.scss */
+  .chat-box.timeline .arrow-box-left .name {
+    float: left;
+    margin-left: 45px; }
+
+  /* line 89, ../src/scss/responsive480.scss */
+  .chat-box.timeline + .closable-chat-box {
+    margin-left: 0; } }

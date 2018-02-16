@@ -1,0 +1,51 @@
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css"> 
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+
+<script type="text/javascript" src="/javascripts/src/recovery/mwsReport.js"></script> 
+
+<h5>Select Dates to Generate Report</h5>
+<form class="form-inline" method="post" action="/mws/report" >
+    <span style="margin-right: 15px;">To: &nbsp;</span><input type="text" class="start" id="startDate" name="startDate" required="required"/><br><br>
+    <span >Form: &nbsp;</span><input style="margin-right:5px;" type="text" class= "end" id="endDate" name="endDate" required="required"/><br><br>
+    <span>Type: &nbsp;</span><select name="category" style="width: 184px; margin-left:5px;">
+        <option value="summary">Summary Report</option>
+        <option value="detailed">Detailed Report</option>
+    </select><br><br><br>  
+    <input class="btn btn-blue btn-small" style="margin:0 12px 0 37px" type="submit" name="click" value="Submit" />
+
+    <button type="reset" class="btn btn-warning btn-small" title="Reset">Reset</button>
+</form>
+<?php if($this->mwsreport): ?>  
+<div id="dataTables" class="delay"><br><br><hr>
+    <table class='responsive report'>
+        <thead id="">
+            <tr style="text-align: left;">
+                <th>Name</th>
+                <th>Item Number</th> 
+                <th>Number of Processed</th>  
+                <th>Weight Range</th>
+                <th>Processing Cost</th>
+                <th>Total</th>                  
+            </tr>
+            <tbody>                
+            <?php foreach ($this->mwsreport as $value) : ?>
+                <tr>
+                    <td><?php echo $value['name']; ?></td>
+                    <td><?php echo $value['item_number']; ?></td>
+                    <td><?php echo $value['number_of_processed'];?></td>
+                    <td><?php echo $value['weight_category'];?></td>
+                    <td><?php echo "$ ".number_format($value['cost_each'], 2); ?></td>
+                    <td><?php echo "$ ".number_format($value['processing_cost'], 2); ?></td>
+                </tr>
+            <?php endforeach; ?>                
+            </tbody>
+        </thead>
+    </table>
+</div>
+<?php endif;?>    

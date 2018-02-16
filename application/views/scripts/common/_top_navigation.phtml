@@ -1,0 +1,42 @@
+<div class="navbar navbar-top navbar-inverse">
+  <div class="navbar-inner" style="background: #0085b7; border:0;">
+    <div class="container-fluid">
+        <a class="brand" href="/" style="padding:0"><i class="icon-logo"></i></a>
+        <p class="brand item_name"
+          style="font-size: 20px; color: white; margin-top: 15px;line-height: 0;">
+          <b>Vendor Portal</b>
+        </p>
+      <!-- the new toggle buttons -->
+      <?php if ($_SESSION['vendor'] !== "MWS") :?>
+      <div class="nav pull-right">
+        <input id='search_serial_input' class='pull-left' type='text' placeholder='Serial Number'>
+        <button  id='search_serial' class="btn btn-blue pull-right">Search</button>
+      </div>
+      <?php endif;?>
+      <ul class="nav pull-right">
+        <li class="toggle-primary-sidebar hidden-desktop" data-toggle="collapse" data-target=".nav-collapse-primary">
+          <button type="button" class="btn btn-navbar">
+            <i class="icon-th-list"></i>
+          </button></li>
+        <li class="hidden-desktop" data-toggle="collapse" data-target=".nav-collapse-top"><button type="button" class="btn btn-navbar"><i class="icon-align-justify"></i></button></li>
+      </ul>	
+      <div id='profile' class="nav pull-right">
+        <?php echo 'Logged as '.$_SESSION['firstname'].' '.$_SESSION['lastname'] ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#search_serial').click(function(event) {
+    if ($('#search_serial_input').val()) {
+      window.location = '/index/scan/serial_number/'+$('#search_serial_input').val();
+    }
+  });
+
+  $('#search_serial_input').bind('keypress', function(e) {
+    if(e.keyCode==13){
+        $('#search_serial').click();
+      }
+  });
+</script>

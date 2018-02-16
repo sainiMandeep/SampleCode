@@ -1,0 +1,32 @@
+<style type="text/css">
+	table.dataTable thead tr{
+		text-align: left;
+	}
+	#checkedin-page tbody td {
+		padding: 8px 0 8px 18px;
+	}		
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap-editable/css/bootstrap-editable.css" media="screen" rel="stylesheet" type="text/css">
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" media="screen" rel="stylesheet" type="text/css">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script src="/javascripts/src/recovery/checkedinMws.js"></script>
+<div id="loader_image" style="text-align:center" >
+	<img src="/images/blue_loading_3.gif" />
+</div>
+<form id="process-MWS" method="post" action="/mws/bulkprocess" style="margin-top: -40px; padding: 5px">
+	<div id="checkedin-page" class="hidden" ng-non-bindable>
+    	<div class="box">
+        	<div class="box-content padded">
+            	<table id="checkedinTable" class="responsive"></table>            	
+        	</div>
+    	</div>
+    <input class="btn btn-medium btn-blue" type="submit" value="Process Recovery">
+	</div>
+</form>
+<script>	
+	function selectAll($e) {
+	    $('.process-checkbox').prop('checked', $e.checked);
+	}
+</script>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html ng-app="recovery">
+<head>
+<meta name="viewport"
+	content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+<meta charset="utf-8">
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>Vendor Portal</title>
+	<?php
+	$this->headLink ()->appendStylesheet ( 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,800' );
+	$this->partial ( 'common/_css.phtml' );
+	echo $this->headLink ();
+	?>
+	<?php
+	$this->partial ( 'common/_js.phtml' );
+	echo $this->headScript ();
+	?>
+</head>
+<body>
+	<div class="navbar navbar-top navbar-inverse">
+		<div class="navbar-inner" style="background: #0085b7; border:0;">
+			<div class="container-fluid">
+				<a class="brand" href="/" style="padding:0"><i class="icon-logo"></i></a>
+				<p class="brand item_name"
+					style="font-size: 20px; color: white; margin-top: 15px;line-height: 0;">
+					<b>Vendor Portal</b>
+				</p>
+			</div>
+		</div>
+	</div>
+	<?php echo Ontraq_Form_Error::renderBox($this->form->password); ?>
+	<div style="margin:auto; width:530px;">
+		<div class="padded">
+			<div id="box-login" class="box">
+				<div class="box-header">
+					<span class="title">Enter Your Password</span>
+				</div>
+				<div class="box-content padded">
+					<form id='<?php echo $this->form->getId();?>' action='<?php echo $this->form->getAction();?>' method='<?php echo $this->form->getMethod();?>' class="separate-sections">
+						<div class="input-prepend">
+							<span class="add-on"> <i class="icon-key"></i></span> 
+								<?php echo $this->form->password; ?>
+						</div>
+						<div>
+							<button type='submit' class='btn btn-blue btn-block'>
+								Login
+								<i class="icon-signin"></i>
+							</button>
+						</div>
+					</form>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+	

@@ -1,0 +1,117 @@
+<div ng-controller="binCtrl" ng-init="init()" style='padding: 0 45px;'>
+	<div ng-show='bins_missing.list.length > 0' class="alert alert-warning">
+		<strong>Warning : Some type of bin are missing</strong>
+		<ul>
+			<li ng-repeat='bin in bins_missing.list'>{{bin.name}} is missing</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<div class="box">
+			<div class="box-header">
+				<div class="table-header">
+					<div class="dataTables_filter">
+						<label>Search: <input type="text" ng-model="searchText"></label>
+					</div>
+				</div>
+			</div>
+			<table class="table">
+				<thead>
+					<th>Edit</th>
+					<th>Waste Type</th>
+					<th>Bin Type</th>
+					<th>ID Number</th>
+					<th>Destruction Location</th>
+					<th>Default</th>
+					<th>Qty</th>
+					<th>Start Date</th>
+					<th>Close Date</th>
+					<th>Destruction Date</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="bin in bins | filter:searchText" id="{{bin.bin_id}}">
+						<td  ot-open-modal="modalEditItem" ng-click='selectBin(bin)'><a class=edit_location
+							style="text-decoration: underline; color: #3c91bc;">Edit</a></td>
+						<td>{{bin.waste_type_name}}</td>
+						<td>{{bin.bin_type_name}}</td>
+						<td>{{bin.number_id}}</td>
+						<td ng-show="!bin.isdestroyed" id="{{bin.location_id}}">{{bin.location_name}}
+						</td>
+						<td ng-show="bin.isdestroyed" id="{{bin.location_id}}">{{bin.location_name}}</td>
+						<td ng-show="!bin.isdestroyed"><input type="checkbox"
+							ng-model="bin.is_default" ng-click="setDefault(bin)"></td>
+						<td>{{bin.qty}}</td>
+						<td ng-show="bin.isdestroyed">Destroyed</td>
+						<td ng-show="!bin.isdestroyed"><input style="width: 100%;"
+							type="text" ui-date model="bin.start_date"
+							ng-disabled='bin.close_date'></td>
+						<td ng-show="bin.isdestroyed">{{bin.start_date}}</td>
+						<td ng-show="!bin.isdestroyed"><input style="width: 100%;"
+							type="text" ui-date model="bin.close_date"
+							compare='bin.start_date'
+							ng-disabled='!(bin.start_date) || (bin.destruction_date)'></td>
+						<td ng-show="bin.isdestroyed">{{bin.close_date}}</td>
+						<td><input type="text" ui-date model="bin.destruction_date"
+							style="width: 100%;" compare='bin.close_date'
+							ng-disabled='!(bin.close_date)'></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<button class="btn btn-blue pull-right" data-loading-text="Loading..."
+		ng-click="save()">Submit</button>
+
+	<div ng-controller="editBinCtrl" id='modalEditItem' class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Edit Bin</h4>
+			</div>
+			<div class="modal-body form-horizontal">
+				<form class="separate-sections form-horizontal fill-up" name='editBinForm'>
+					<div oq-input max-length='50' required='true' model='selected_bin.number_id' name='ID Number' label='ID Number'></div>
+					<div oq-input max-length='50' required='true' model='selected_bin.location_name' name='location' label='Location'></div>
+					<div>
+						<label for="bin_types" class="control-label ng-binding">
+							Bin Types
+						</label>
+						<div class="controls">
+							<select ng-model="selected_bin.bin_type" ng-options="c.name for c in bin_types">
+								<option value="">Select a bin type</option>
+							</select>
+						</div>
+					</div>
+					<div ng-if='selected_bin.qty == 0'>
+						<label for="waste_types" class="control-label ng-binding">
+							Waste Types
+						</label>
+						<div class="controls">
+							<select ng-model="selected_bin.waste_type" ng-options="c.name for c in waste_types">
+								<option value="">Select a category</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a ng-if='selected_bin.qty == 0'  ng-click="delete()" ot-close-modal="modalEditItem" class="btn btn-danger pull-left">Delete</a>
+				<a ot-close-modal="modalEditItem" class="btn btn-default">Cancel</a>
+				<a ot-close-modal="modalEditItem" cond="editBinForm.$valid && selected_bin.waste_type != null && selected_bin.bin_type != null" ng-click="save()" class="btn btn-primary" ng-disabled="!editBinForm.$valid || !selected_bin.waste_type || !selected_bin.bin_type">Save</a>
+			</div>
+		</div>
+</div>
+<script>
+<?php if($this->bins):?>
+var  bins = <?php echo $this->bins?>;	
+<?php endif;?>
+<?php  if ($this->wasteTypes):?>
+var waste_types = <?php echo $this->wasteTypes ?>;
+<?php else: ?>
+var waste_types = [];
+<?php endif; ?>
+<?php  if ($this->binTypes):?>
+var bin_types = <?php echo $this->binTypes ?>;
+<?php else: ?>
+var bin_types = [];
+<?php endif; ?>
+
+</script>

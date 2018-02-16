@@ -1,0 +1,23 @@
+<phpunit bootstrap="./application/bootstrap.php" colors="true">
+    <testsuite name="Application Test Suite">
+        <directory>./</directory>
+    </testsuite>
+    <filter>
+        <!-- If Zend Framework is inside your project's library, uncomment this filter -->  
+        <whitelist>
+            <directory suffix=".php">../application</directory>
+            <exclude>
+                <directory suffix=".phtml">../application</directory>
+                <file>../application/bootstrap.php</file>
+                <file>../application/controllers/errorController.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+    
+    <logging>
+        <log type="coverage-html" target="./log/report" title="OnTraQ" charset="UTF-8" yui="true" highlight="true" lowerUpperBound="50" highLowerBound="80"/>
+        <!-- <log type="testdox" target="./log/testdox.html"/>
+        <log type="junit" target="build/logs/junit.xml" />
+        <log type="coverage-clover" target="build/logs/coverage.xml"/> -->
+    </logging>
+</phpunit>

@@ -1,0 +1,253 @@
+<?php echo $this->FormErrorHeader($this->form);?>
+<div ng-controller="processCtrl" ng-init="init()">
+	<div class='box'>
+		<div class='box-header'>
+			<span class="title">Enter Process Information</span>
+		</div>
+		<div class='box-content padded'>
+			<div class="row-fluid">
+				<div class="span12">
+					<form id='<?php echo $this->form->getId();?>' action='<?php echo $this->form->getAction();?>' method='<?php echo $this->form->getMethod();?>' class="separate-sections form-horizontal fill-up <?php echo $this->form->classValid ?>" ng-submit='submit()' autocomplete="off">
+						<div class="row-fluid">
+						<div class='span6'>
+							<?php echo $this->FormEl($this->form->weight);?>
+							<div style='margin-top:10px'>
+							<?php echo $this->FormEl($this->form->processed_date);?>
+							</div>
+						</div>
+						<div class='offset3 span3 text-right'>
+							<p class='text-right'><a target='_blank' href='/customer/index/serial_number/<?php echo $this->serial_number ?>' targe='blank' class="btn btn-default" href="#">Link to customer information</a></p>
+						</div>
+						</div>
+						<div id='medications_items' class="row-fluid">
+							<div >
+								<h4>Manifest</h4>
+							</div>
+							<div ng-controller="itemsCtrl">
+								<ul  class="nav nav-tabs">
+									<li ng-class="{active: active=='favorite'}">
+										<a ng-click="active ='favorite'">Favorite</a>
+									</li>
+									<li ng-class="{active: active=='ndc'}">
+										<a ng-click="active ='ndc'">NDC Database</a>
+									</li>
+									<ul ng-show='active=="favorite"' class="but pull-right">
+										<a ng-click='reset()' ot-open-modal="modalAddItem" class="btn btn-small btn-info pull-right">Add custom item</a>
+									</ul>
+									<div ng-show='active=="favorite"' class='pull-right but'>
+										<input ng-model="searchText" placeholder='Search'></input>
+									</div>
+									<div ng-show='active=="ndc"' class='pull-right but'>
+										<input ng-model="searchNdc" placeholder='Search'></input>
+									</div>
+								</ul>
+								<div ng-show='active=="favorite"' class='list'>	
+									<table id='favorites' class="table table-hover" >
+										<thead>
+											<th class='name'>Name</th>
+											<th class='package'>Package</th>
+											<th class='category'>Category</th>
+											<th class='ndc'>NDC_Number</th>
+											<th class='favorite'>Favorite</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="medication in medications_favorite | filter:searchText" class='add'>
+												<td ng-click="add(medication)">{{medication.name}}</td>
+												<td ng-click="add(medication)">{{medication.package}}</td>
+												<td ng-click="add(medication)">{{medication.category}}</td>
+												<td ng-click="add(medication)">{{medication.ndc_number}}</td>
+												<td ng-click="unFavorite(medication)" class='action'>UnFavorite</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div ng-show='active=="ndc"' class='list'>
+									<div class='nodata' ng-show='ndc.length == 0'>
+										<h5>Search in ndc in database</h5>
+									</div>	
+									<table id='ndc' ng-show='ndc.length > 0' class="table table-hover" >
+										<thead>
+											<th class='name'>Name</th>
+											<th class='package'>Package</th>
+											<th class='ndc'>NDC_Number</th>
+											<th class='favorite'>Favorite</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="medication in ndc" class='add'>
+												<td ot-open-modal="modalAddFavorite" ng-click="addNDC(medication)">{{medication.name}}</td>
+												<td ot-open-modal="modalAddFavorite" ng-click="addNDC(medication)">{{medication.package}}</td>
+												<td ot-open-modal="modalAddFavorite" ng-click="addNDC(medication)">{{medication.ndc_number}}</td>
+												<td ng-if='medication.favorite' ng-click="unFavorite(medication)" class='action'>UnFavorite</td>
+												<td ot-open-modal="modalAddFavorite" ng-if='!medication.favorite' ng-click="addFavorite(medication)" class='action'>Favorite</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div ng-controller='addFavoriteItemCtrl' id='modalAddFavorite' class="modal hide fade">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4>Choose a category</h4>
+									</div>
+									<div class="modal-body form-horizontal">
+										<div class="separate-sections form-horizontal fill-up" name='addCustomItemForm'>
+											<label for="category" class="control-label ng-binding">
+												category
+											</label>
+											<div class="controls">
+												<select ng-model="favorite.category" ng-options="c for c in waste_types">
+													<option value="">Select a category</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<a ot-close-modal="modalAddFavorite" class="btn">Cancel</a>
+										<a ot-close-modal="modalAddFavorite" cond="favorite.category" ng-click="add()" ng-disabled="!favorite.category" ot-close-modal="modalAddFavorite" class="btn btn-primary">Add</a>
+									</div>
+								</div>
+							</div>
+							<div>
+								<header>
+									<div class='pull-left'>
+										<h5>Items Added : {{quantity}}</h5>
+									</div>
+									<div class='but pull-right'>
+										<a ng-click="rejectAll()" class="btn btn-small btn-warning">Reject all</a>
+									</div>
+								</header>
+								<div class='list'>
+									<div class='nodata' ng-show='medications.length == 0'>
+										<h5>Add items in the manifest</h5>
+									</div>
+									<table id='manifest' ng-show='medications.length > 0' class="table">
+										<thead>
+											<th class='name'>Name</th>
+											<th class='package'>Package</th>
+											<th class='cat'>Category</th>
+											<th class='bin'>Bin</th>
+											<th class='qty'>Quantity</th>
+											<th class='action'>Reject</th>
+											<th class='del'>Delete</th>
+										</thead>
+										<tbody>
+											<tr ng-class="{rejected: medication.rejected}" ng-repeat="medication in medications | orderBy:'$index'">
+												<td>{{medication.name}}</td>
+												<td>{{medication.package}}</td>
+												<td>{{medication.category}}</td>
+												<td>{{medication.bin.number_id}}</td>
+												<td class='number'>
+													<input ng-model="medication.quantity" ng-change='validate_number(medication)' type='number' min='1'></input>
+												</td>
+												<td ng-if='medication.rejected' ng-click="toggleReject(medication)" class='action'>Cancel</td>
+												<td ng-if='!medication.rejected' ng-click="toggleReject(medication)" class='action'>Reject</td>
+												<td ng-click="remove($index)" class='delete'><i class="icon-trash"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<?php echo $this->FormEl($this->form->checkin_notes);?>
+						<?php echo $this->FormEl($this->form->general_notes);?>					
+						<?php echo $this->form->medications;?>
+						<br>
+						<div id="control-general_notes">
+							<div class="controls check">
+								<?php echo $this->form->sendnotes; ?>
+								<label for="sendnotes" class="control-label">Send General Notes to Compliance team</label>
+							</div>
+						</div>
+					</div>
+					<input type='hidden' id='reject' name='reject' />
+				</form>
+			</div>
+			<hr>
+			<div class='row'>
+				<div class='offset1'>
+					<button ot-open-modal="modalReject" class="btn btn-red"
+					data-loading-text="Loading...">Reject</button>
+					<button id="<?php echo $this->form->getId();?>_save"
+						class="btn btn-blue pull-right" data-loading-text="Loading...">Submit</button>
+					</div>
+				</div>
+			</div>			
+		</div>
+		
+		<div id='modalReject' class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+				<h4>Reject</h4>
+			</div>
+			<div class="modal-body form-horizontal">
+				<h4>Are you sure you want to reject this bag ?</h4>
+				<h6>Warning : No medications will be associated with this bag</h6>
+			</div>
+			<div class="modal-footer">
+				<a ot-close-modal="modalReject" class="btn btn-default">No</a> 
+				<a id='<?php echo $this->form->getId();?>_reject_confirmation' class="btn btn-red">Yes</a>
+			</div>
+		</div>
+		<div ng-controller="addCustomItemCtrl" id='modalAddItem' class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Add custom mediation</h4>
+			</div>
+			<div class="modal-body form-horizontal">
+				<form class="separate-sections form-horizontal fill-up" name='addCustomItemForm'>
+					<div oq-input max-length='50' required='true' model='custom.name' name='name' label='Name'></div>
+					<div oq-input max-length='50' model='custom.package' name='package' label='Package'></div>
+					<div>
+						<label for="category" class="control-label ng-binding">
+							category
+						</label>
+						<div class="controls">
+							<select ng-model="custom.category" ng-options="c for c in waste_types">
+								<option value="">Select a category</option>
+							</select>
+						</div>
+					</div>
+					<div class="controls check">
+						<input type='checkbox'  ng-model='custom.favorite' name='favorite' id='favorite'>
+						<label for="favorite" class="control-label">Add as favorite</label>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+
+				<a ot-close-modal="modalAddItem" class="btn">Cancel</a>
+				<a ot-close-modal="modalAddItem" cond="addCustomItemForm.$valid && custom.category != null" ng-click="add()" class="btn btn-primary" ng-disabled="!addCustomItemForm.$valid || custom.category == null">Add</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var medications = $('#medications').val();
+
+<?php  if ($this->wasteTypes):?>
+var waste_types = <?php echo $this->wasteTypes ?>;
+<?php else: ?>
+var waste_types = [];
+<?php endif; ?>
+<?php  if ($this->favorites):?>
+var medications_favorite = <?php echo $this->favorites ?>;
+<?php else: ?>
+var medications_favorite = [];
+<?php endif; ?>
+<?php  if ($this->bins):?>
+var bins = <?php echo $this->bins ?>;
+<?php else: ?>
+var bins = [];
+<?php endif; ?>
+$(document).ready(function() {
+	$('#processed_date').datepicker({endDate: '1d', "autoclose":true});
+	$('#<?php echo $this->form->getId();?>_save').click(function() {
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+	$('#<?php echo $this->form->getId();?>_reject_confirmation').click(function() {
+		$('#reject').val(true);
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+});
+</script>

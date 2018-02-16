@@ -1,0 +1,52 @@
+<style type="text/css">
+	input.ng-invalid {
+  		border: 1px solid #d13b3b;
+  		box-shadow: BLUR 2px 2px 2px #d13b3b;
+	}
+	form label {
+		font-size:14px;
+	}
+</style>
+<div style="margin:-50px 0 0 0; font-size: 14px;" class="span8" ng-controller='mwsCtrl'>
+		<div style="margin-left:90px; font-weight: bold;" class={{class}} ng-cloak>
+	  			{{message}}	
+		</div>
+	<div class="box-header">
+		<h4 class="title" style="margin-left:90px;">Enter Scan Information</h4>
+	</div>
+	<div class="box-content">
+		<div class="">
+			<form id="form_scan" style="font-size:14px;" class="separate-sections form-horizontal fill-up">
+				<div id="control-serialNumber">
+					<label for="serialNumber" class="control-label">Serial Number</label>
+					<div class="controls">
+						<input type="text" name="serialNumber" id="serialNumber" ng-model="scan.serialNumber" placeholder="Serial Number" class="small" autofocus="autofocus" required="required"/>
+					</div>
+				</div>						
+				<div id="control-weight">
+					<label for="weight" class="control-label">Weight</label>
+					<div class="controls">
+						<input type="text" name="weight" id="weight" ng-model="scan.weight" placeholder="Weight" maxlength="5" class="small"/>
+					</div>
+	
+				</div>
+				<div id="control-action">
+					<label for="action" class="control-label">Action</label>
+					<div class="controls">
+						<select id='action' class ="small" ng-model="action" ng-options="l.text for l in actions"></select>
+					</div>
+				</div>
+				<div id="control-note">
+					<label for="note" class="control-label">Notes</label>
+				<div class="controls">
+				<textarea type="text" name="note" id="note" ng_model="scan.note" placeholder="Notes" class="small" style="width: 40%;"></textarea>
+				</div>
+				</div>					
+			</form>
+			<div style="margin-left:190px">
+				<button id="search" class="btn btn-blue" ng-click="submitScan()">Submit</button>
+				<button id="reset" style="margin-left:10px;" class="btn btn-default" ng-click = "resetForm(scan)">Reset</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,101 @@
+/*$link-color: #78808a; original bootstrap color*/
+@media (max-width: 979px) {
+  /* line 5, ../src/scss/responsive979.scss */
+  .sidebar-background {
+    display: none; }
+
+  /* line 9, ../src/scss/responsive979.scss */
+  .primary-sidebar {
+    *zoom: 1;
+    position: static;
+    width: auto;
+    float: none;
+    background: #11161A; }
+  /* line 24, ../src/scss/mixin_helpers.scss */
+  .primary-sidebar:before, .primary-sidebar:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  /* line 30, ../src/scss/mixin_helpers.scss */
+  .primary-sidebar:after {
+    clear: both; }
+
+  /* line 17, ../src/scss/responsive979.scss */
+  .main-content {
+    margin: 0; }
+
+  /* line 22, ../src/scss/responsive979.scss */
+  .user-avatar > .dropdown-toggle {
+    display: none; }
+
+  /* line 27, ../src/scss/responsive979.scss */
+  .dropdown-menu li.with-image span, .dropdown-menu li a {
+    text-shadow: none; }
+
+  /* line 31, ../src/scss/responsive979.scss */
+  .label, .badge, .navbar-inverse .nav > li > a, .navbar-inverse .nav > li.active > a {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+  /* line 35, ../src/scss/responsive979.scss */
+  .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+    font-weight: 600; }
+
+  /* line 39, ../src/scss/responsive979.scss */
+  .primary-sidebar .nav {
+    margin: 0; }
+
+  /* line 43, ../src/scss/responsive979.scss */
+  .breadcrumb-line {
+    height: auto; }
+  /* line 46, ../src/scss/responsive979.scss */
+  .breadcrumb-line .breadcrumbs {
+    *zoom: 1;
+    float: none; }
+  /* line 24, ../src/scss/mixin_helpers.scss */
+  .breadcrumb-line .breadcrumbs:before, .breadcrumb-line .breadcrumbs:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  /* line 30, ../src/scss/mixin_helpers.scss */
+  .breadcrumb-line .breadcrumbs:after {
+    clear: both; }
+  /* line 51, ../src/scss/responsive979.scss */
+  .breadcrumb-line .nav.pull-right {
+    float: none;
+    margin-right: 0px;
+    border-right: none;
+    border-top: 1px solid #ccc; }
+  /* line 56, ../src/scss/responsive979.scss */
+  .breadcrumb-line .nav.pull-right > li:first-child > a {
+    border-left: none; }
+
+  /* line 64, ../src/scss/responsive979.scss */
+  .nav-collapse .dropdown-menu {
+    display: block;
+    background: transparent; }
+  /* line 68, ../src/scss/responsive979.scss */
+  .nav-collapse .dropdown-menu li a {
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 3px !important; }
+
+  /* line 75, ../src/scss/responsive979.scss */
+  .navbar-search .search-query.animated, .navbar-search .search-query.animated {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 12px; }
+  /* line 79, ../src/scss/responsive979.scss */
+  .navbar-search .search-query.animated:focus, .navbar-search .search-query.animated .focused, .navbar-search .search-query.animated:focus, .navbar-search .search-query.animated .focused {
+    width: 100%;
+    padding: 12px; }
+  /* line 85, ../src/scss/responsive979.scss */
+  .navbar-search i {
+    right: 25px;
+    top: 15px; }
+
+  /* line 92, ../src/scss/responsive979.scss */
+  .nav-tabs-right li > a > span, .nav-tabs-right .title, .nav-tabs-left li > a > span, .nav-tabs-left .title {
+    display: none; } }

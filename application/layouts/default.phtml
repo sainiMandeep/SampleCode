@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app="recovery">
+<head>
+	<meta name="viewport"
+	content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+	<meta charset="utf-8">
+	<!-- Always force latest IE rendering engine or request Chrome Frame -->
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<title>OnTraQ Compliance Manager</title>
+	<?php 
+	$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800');
+	$this->partial('common/_css.phtml');  
+	echo $this->headLink();  
+	?>
+	<?php 
+	$this->partial('common/_js.phtml');
+	echo $this->headScript();
+	?>
+</head>
+<body>
+	<?php echo $this->partial('common/_top_navigation.phtml'); ?> 
+	<?php echo $this->partial('common/_side_navigation.phtml',array("current"=>$this->current_page)); ?>
+	<div class="main-content">
+		<?php if (isset($this->current_page)):?>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="area-top clearfix">
+					<?php echo $this->partial('common/_page_header.phtml', array("current" => $this->current_page));?> 
+				</div>
+			</div>
+		</div>
+		<?php if (!isset($this->no_breadcrumb)):?>
+		<div class="container-fluid padded">
+			<div class="row-fluid">
+				<?php echo $this->partial('common/_bread_crumbs.phtml', array("current" => $this->current_page));?>
+			</div>
+		</div>
+		<?php endif; ?>
+		<?php endif; ?>
+		<div id='container-notification'>
+			<div id='notification'></div>
+		</div>
+		<div class='container-fluid padded'>
+		<div id="content" class="row-fluid">		
+			<?php echo $this->layout()->content; ?>
+		</div>		
+		</div>
+	</div>
+	<div id="modal-form" class="modal fade"></div>
+	<div id="modal-simple" class="modal fade hide"></div>  
+</body>
+</html>

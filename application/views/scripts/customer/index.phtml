@@ -1,0 +1,68 @@
+<div class=" span6 offset1">
+	<div class="box">
+		<div class="box-header">
+			<span class="title">Customer Information</span>
+		</div>
+		<div class="box-content padded">
+			<div>
+				<b>Practice Name : </b> <?php echo $this->customer['PracticeName']; ?>
+			</div>
+			<div>
+				<b>Name : </b> <?php echo $this->customer['Name']; ?>
+			</div>
+			<div>
+				<b>Phone : </b> <?php echo $this->customer['Phone']; ?>
+			</div>
+			<div>
+				<b>Fax : </b> <?php echo $this->customer['FAX']; ?>
+			</div>
+			<div>
+				<b>Street : </b> <?php echo $this->customer['STATE']; ?>
+			</div>
+			<div>
+				<b>Postal Code : </b> <?php echo $this->customer['Street']; ?>
+			</div>
+			<div>
+				<b>State : </b> <?php echo $this->customer['PostalCode']; ?>
+			</div>
+			<div>
+				<b>City : </b> <?php echo $this->customer['CITY']; ?>
+			</div>
+			<div>
+				<b>Country : </b> <?php echo $this->customer['COUNTRY']; ?>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="box">
+		<div class="box-header">
+			<span class="title">Customer License Information</span>
+		</div>
+		<div class="box-section news with-icons">
+			<div class="news-time">
+				<div class=" news-text">
+					<?php if ($this->customer['status']=='current'): ?>
+						<div class="avatar greendark">
+							<i class="icon-ok icon-2x"></i>
+						</div>
+					<?php elseif ($this->customer['status']=='expired'): ?>
+						<div class="avatar darkred">
+							<i class="icon-exclamation icon-2x"></i>
+						</div>
+					<?php else: ?>
+						<div class="avatar darkred">
+							<i class="icon-exclamation-sign icon-2x"></i>
+						</div>
+					<?php endif ?>
+				</div>
+			</div>
+			<span>
+				<b>
+					License Number : &nbsp; <?php echo $this->customer['StateLicense']; ?>
+				</b>
+			</span><br>
+			<span> <b>Expiration Date : &nbsp;<?php echo $this->customer['ExpirationDate'];?></b></span>
+		</div>
+	</div>
+</div>

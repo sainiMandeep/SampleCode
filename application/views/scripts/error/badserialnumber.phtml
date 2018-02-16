@@ -1,0 +1,13 @@
+<div class="alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h2>Warning!</h2>
+  <h3>The serial number "<?php echo $this->serial_number ?>" is not recognized.</h3>
+</div>
+
+<h3>If you want to process this item anyway, choose one of the following option</h3>
+ <a href='/index/address/serial_number/<?php echo $this->serial_number ?>'>
+	<button class="btn btn-success" type="button">I have the address on the customer</button>
+</a>
+<a href='/index/create/serial_number/<?php echo $this->serial_number ?>'>
+ <button class="btn btn-warning" type="button">I don't have the address</button>
+</a>

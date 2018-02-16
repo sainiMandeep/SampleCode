@@ -1,0 +1,135 @@
+<div ng-controller='checkinCtrl' ng-init='init()' class='box'>
+	<div class='box-header'>
+		<span class="title">Enter Checkin Information</span>
+	</div>
+	<div class='box-content padded'>
+		<div class="row">
+			<div class="span7">
+				<form id='<?php echo $this->form->getId();?>'
+					action='<?php echo $this->form->getAction();?>'
+					method='<?php echo $this->form->getMethod();?>'
+					class="separate-sections form-horizontal fill-up <?php echo $this->form->classValid ?>"
+					autocomplete="off">					
+					<?php echo $this->FormEl($this->form->checkin_date);?>
+					<?php echo $this->FormEl($this->form->weight);?>
+					<?php echo $this->FormEl($this->form->checkin_notes);?>
+					<?php echo $this->FormEl($this->form->general_notes);?><br /> <br />
+					<div id="control-general_notes" class='clearfix'>
+						<div class="controls check">
+							<?php echo $this->form->sendnotes?>
+							<label for="sendnotes" class="control-label">Send General Notes
+								to Compliance team</label>
+						</div>
+					</div>
+					<div id="control-general_notes" class='clearfix'>
+						<div class="controls check">
+							<?php echo $this->form->onhold?>
+							<label for="onhold" class="control-label">Put the item on hold</label>
+						</div>
+					</div>
+					<input type='hidden' id='reject' name='reject' />
+				</form>
+				<hr>
+				<div class='offset1'>
+					<button ot-open-modal="modalReject" class="btn btn-red"
+						data-loading-text="Loading...">Reject</button>
+					<button id="<?php echo $this->form->getId();?>_save"
+						class="btn btn-blue pull-right" data-loading-text="Loading...">Submit</button>
+				</div>
+			</div>
+
+
+			<div class=" span3 offset1">
+				<div class="box">
+					<div class="box-header">
+						<span class="title">Customer Information</span>
+					</div>
+					<div class="box-content padded">
+						<div>
+							<b>Practice Name : </b> {{customer.PracticeName}}
+						</div>
+						<div>
+							<b>Name : </b>{{customer.Name}}
+						</div>
+						<div>
+							<b>Phone : </b>{{customer.Phone}}
+						</div>
+						<div>
+							<b>Fax : </b>{{customer.FAX}}
+						</div>
+						<div>
+							<b>Street : </b>{{customer.Street}}
+						</div>
+						<div>
+							<b>Postal Code : </b>{{customer.PostalCode}}
+						</div>
+						<div>
+							<b>State : </b>{{customer.STATE}}
+						</div>
+						<div>
+							<b>City : </b>{{customer.CITY}}
+						</div>
+						<div>
+							<b>Country : </b>{{customer.COUNTRY}}
+						</div>
+
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="box-header">
+						<span class="title">Customer License Information</span>
+					</div>
+					<div class="box-section news with-icons">
+						<div class="news-time">
+							<div ng-switch on="customer.status" class=" news-text">
+								<div ng-switch-when="current" class="avatar greendark">
+									<i class="icon-ok icon-2x"></i>
+								</div>
+								<div ng-switch-when="unknown" class="avatar darkred">
+									<i class="icon-exclamation-sign icon-2x"></i>
+								</div>
+								<div ng-switch-default class="avatar darkred">
+									<i class="icon-exclamation icon-2x"></i>
+								</div>
+							</div>
+						</div>
+						<span><b>License Number : &nbsp; {{customer.StateLicense}} </b></span><br>
+						<span> <b>Expiration Date : &nbsp;{{customer.ExpirationDate}}</b></span>
+					</div>
+				</div>
+			</div>
+			<div id='modalReject' class="modal hide fade">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4>Reject</h4>
+				</div>
+				<div class="modal-body form-horizontal">
+					<h4>Are you sure you want to reject this bag ?</h4>
+				</div>
+				<div class="modal-footer">
+					<a ot-close-modal="modalReject" class="btn btn-default">No</a> <a
+						id='<?php echo $this->form->getId();?>_reject_confirmation'
+						class="btn btn-red">Yes</a>
+				</div>
+			</div>
+		</div>
+		<script>
+$(document).ready(function() {
+	$('#checkin_date').datepicker({endDate: '1d', "autoclose":true});
+	$('#<?php echo $this->form->getId();?>_save').click(function() {
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+
+	$('#<?php echo $this->form->getId();?>_reject_confirmation').click(function() {
+		$('#reject').val(true);
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+});
+<?php  if ($this->customer):?>
+var customer = <?php echo $this->customer ?>;
+<?php else: ?>
+var customer = [];
+<?php endif; ?>
+</script>

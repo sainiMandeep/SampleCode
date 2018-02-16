@@ -1,0 +1,23 @@
+<div class='box'>
+	<div class='box-content padded'>
+		<h4>Do you want to edit this item ?</h4>
+		<h5>Editing this item will change the status from processed to checked-in.</h5>
+	</div>
+	<div class="form-actions">
+		<form id='form' method='post' action='/process/revertprocess/serial_number/<?php echo $this->serial_number ?>'>
+		    <button id='unprocessYes' type="submit" class="btn btn-blue">Yes</button>
+		    <button id='unprocessNo' type="button" class="btn btn-default">No</button>
+		    <input type='hidden' name='confirm' id='confirmUnprocess'>
+	   	</form>
+	</div>
+</div> 
+<script type="text/javascript">
+$('#unprocessYes'). click(function(event) {
+	$('#confirmUnprocess').val('yes');
+	$('#form').submit();
+});
+$('#unprocessNo'). click(function(event) {
+	$('#confirm').val('no');
+	$('#form').submit();
+});
+</script>

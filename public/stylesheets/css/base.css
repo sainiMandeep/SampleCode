@@ -1,0 +1,135 @@
+/*$link-color: #78808a; original bootstrap color*/
+/*$link-color: #78808a; original bootstrap color*/
+/* line 4, ../src/scss/base.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  outline: none; }
+
+/* line 11, ../src/scss/base.scss */
+html {
+  min-height: 100%; }
+
+/* line 15, ../src/scss/base.scss */
+body {
+  font: normal 12px 'Open Sans', HelveticaNeue, Helvetica, Arial;
+  min-height: 100%;
+  color: #363f44;
+  overflow-x: hidden; }
+
+/* line 27, ../src/scss/base.scss */
+strong, b {
+  font-weight: 600; }
+
+/* line 31, ../src/scss/base.scss */
+a {
+  color: #363f44; }
+/* line 35, ../src/scss/base.scss */
+a:hover, a:active, a:focus {
+  cursor: pointer;
+  outline: 0px none;
+  text-decoration: none;
+  color: #363f44; }
+
+/* line 44, ../src/scss/base.scss */
+i {
+  font-size: 14px; }
+
+/* line 48, ../src/scss/base.scss */
+.container-fluid {
+  padding: 0; }
+
+/* line 52, ../src/scss/base.scss */
+.main-content {
+  position: relative;
+  margin-left: 251px; }
+
+/* line 57, ../src/scss/base.scss */
+.padded {
+  padding: 15px; }
+
+/* line 61, ../src/scss/base.scss */
+.nopadding {
+  padding: 0; }
+
+/* line 65, ../src/scss/base.scss */
+.hpadded {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+/* line 70, ../src/scss/base.scss */
+.vpadded {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+/* line 75, ../src/scss/base.scss */
+.separate-sections {
+  margin: 0;
+  list-style: none;
+  padding-bottom: 5px; }
+/* line 80, ../src/scss/base.scss */
+.separate-sections > li, .separate-sections > div {
+  margin-bottom: 15px !important; }
+/* line 83, ../src/scss/base.scss */
+.separate-sections > li:last-child, .separate-sections > div:last-child {
+  margin-bottom: 0px; }
+
+/* line 89, ../src/scss/base.scss */
+h1, h2, h3, h4, h5, h6, th {
+  color: #363f44;
+  font-weight: 600; }
+
+/* line 96, ../src/scss/base.scss */
+.the-icons {
+  list-style: none; }
+
+/* line 100, ../src/scss/base.scss */
+.avatar {
+  display: inline-block; }
+/* line 102, ../src/scss/base.scss */
+.avatar img {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3); }
+
+/* line 108, ../src/scss/base.scss */
+.avatar-small {
+  max-width: 32px;
+  max-height: 32px; }
+
+/* line 113, ../src/scss/base.scss */
+.twitter-color {
+  color: #4099ff; }
+
+/* line 117, ../src/scss/base.scss */
+.facebook-color {
+  color: #35508F; }
+
+/* line 121, ../src/scss/base.scss */
+.note {
+  color: #909090;
+  font-style: italic;
+  font-size: 11px;
+  margin-bottom: 10px; }
+
+/* line 127, ../src/scss/base.scss */
+.close {
+  line-height: 14px; }
+
+/* line 131, ../src/scss/base.scss */
+.relative {
+  position: relative; }
+
+/* line 135, ../src/scss/base.scss */
+.indent {
+  margin-left: 10px; }
+
+/* line 139, ../src/scss/base.scss */
+.strikethrough {
+  text-decoration: line-through; }

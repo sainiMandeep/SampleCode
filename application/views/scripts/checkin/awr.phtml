@@ -1,0 +1,208 @@
+<div ng-controller='checkinCtrl' ng-init='init()' class='box'>
+	<div class='box-header'>
+		<span class="title">Enter Checkin Information</span>
+	</div>
+	<div class='box-content padded'>
+		<div class="row">
+			<div class="span7">
+				<form id='<?php echo $this->form->getId();?>'
+					action='<?php echo $this->form->getAction();?>'
+					method='<?php echo $this->form->getMethod();?>'
+					class="separate-sections form-horizontal fill-up <?php echo $this->form->classValid ?>"
+					autocomplete="off">
+					<div id="control-checkin_date">
+						<label for="checkin_date" class="control-label">Bin ID Number</label>
+						<div class="controls">
+							<input type="text" value="<?php echo $this->binNumberId; ?>" placeholder="Date Received" class="small" readonly style='background:#E2DFDF' >
+						</div>
+					</div>
+					<div id="control-checkin_date">
+						<label for="checkin_date" class="control-label">Bin Type</label>
+						<div class="controls">
+							<input type="text" value="<?php echo $this->binTypeName; ?>" placeholder="Date Received" class="small" readonly style='background:#E2DFDF' >
+						</div>
+					</div>				
+					<?php echo $this->FormEl($this->form->checkin_date);?>
+					<?php echo $this->FormEl($this->form->weight);?>
+					<?php echo $this->FormEl($this->form->checkin_notes);?>
+					<?php echo $this->FormEl($this->form->general_notes);?><br />
+					<br />
+					<div id="control-general_notes" class='clearfix'>
+						<div class="controls check">
+							<?php echo $this->form->sendnotes?>
+							<label for="sendnotes" class="control-label">Send General Notes
+								to Compliance team</label>
+						</div>
+					</div>
+					<div id="control-general_notes" class='clearfix'>
+						<div class="controls check">
+							<?php echo $this->form->onhold?>
+							<label for="onhold" class="control-label">Put the item on hold</label>
+						</div>
+					</div>
+					<input type='hidden' id='reject' name='reject' />
+				</form>
+				<hr>
+				<div class='offset1'>
+					<button ot-open-modal="modalReject" class="btn btn-red"
+						data-loading-text="Loading...">Reject</button>
+					<button id="<?php echo $this->form->getId();?>_save"
+						class="btn btn-blue pull-right" data-loading-text="Loading...">Submit</button>
+				</div>
+			</div>
+
+
+			<div class=" accordion-toggle span3 offset1" data-toggle="collapse"
+				id="accordion1">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle box-header title"
+							data-toggle="collapse" data-parent="#accordion1"
+							href="#collapseOne"> <b> Customer Information</b>
+						</a>
+					</div>
+					<div id="collapseOne" class="accordion-body in"
+						style="height: auto;">
+						<div class="accordion-inner padded">
+							<div id='customer_info'>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Practice Name : </b>
+									</div>
+									<div class="pull-left">{{customer.PracticeName}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Name : </b>
+									</div>
+									<div class="pull-left">{{customer.Name}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Phone : </b>
+									</div>
+									<div class="pull-left">{{customer.Phone}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Fax : </b>
+									</div>
+									<div class="pull-left">{{customer.FAX}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Street : </b>
+									</div>
+									<div class="pull-left">{{customer.Street}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Postal Code : </b>
+									</div>
+									<div class="pull-left">{{customer.PostalCode}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>State : </b>
+									</div>
+									<div class="pull-left">{{customer.STATE}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>City : </b>
+									</div>
+									<div class="pull-left">{{customer.CITY}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Country : </b>
+									</div>
+									<div class="pull-left">{{customer.COUNTRY}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class=" accordion-toggle span3 offset1" data-toggle="collapse"
+				id="accordion2">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle box-header title"
+							data-toggle="collapse" data-parent="#accordion2"
+							href="#collapseTwo"> <b> Customer License Information</b>
+						</a>
+					</div>
+					<div id="collapseTwo" class="accordion-body in" style="height: auto;">
+						<div class="accordion-inner padded">						
+							<div id='customer_license_info'>
+								<div class='clearfix' >
+									<div class="lab pull-left">
+										<b>License Number : &nbsp;  </b>
+									</div>
+									<div class="pull-left">{{customer.StateLicense}}</div>
+								</div>
+								<div class='clearfix'>
+									<div class="lab pull-left">
+										<b>Expiration Date : &nbsp; </b>
+									</div>
+									<div class="pull-left">{{customer.ExpirationDate}}</div>
+								</div>								
+							</div>	
+									<div ng-switch on="customer.status" class="pull-right" style="margin:-52px 40px;">
+										<div ng-switch-when="current">
+											<div class="box-section news  with-icons">
+     											 <div class="avatar greendark"><i class="icon-ok icon-2x"></i></div>
+    										</div>							
+										</div>
+										<div ng-switch-when="unknown">
+											<div class="box-section news  with-icons">
+     											 <div class="avatar darkred"><i class="icon-exclamation-sign icon-2x"></i></div>
+    										</div>							
+										</div>
+										<div ng-switch-default>
+											<div class="box-section news  with-icons">
+     											 <div class="avatar darkred"><i class="icon-exclamation-sign icon-2x"></i></div>
+    										</div>											
+										</div>
+									</div>					
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='modalReject' class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h4>Reject</h4>
+		</div>
+		<div class="modal-body form-horizontal">
+			<h4>Are you sure you want to reject this AWR ?</h4>
+		</div>
+		<div class="modal-footer">
+			<a ot-close-modal="modalReject" class="btn btn-default">No</a> <a
+				id='<?php echo $this->form->getId();?>_reject_confirmation'
+				class="btn btn-red">Yes</a>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+	$('#checkin_date').datepicker({endDate: '1d', "autoclose":true});
+	$('#<?php echo $this->form->getId();?>_save').click(function() {
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+
+	$('#<?php echo $this->form->getId();?>_reject_confirmation').click(function() {
+		$('#reject').val(true);
+		$('#<?php echo $this->form->getId();?>').submit();
+	});
+});
+<?php  if ($this->customer):?>
+var customer = <?php echo $this->customer ?>;
+<?php else: ?>
+var customer = [];
+<?php endif; ?>
+</script>

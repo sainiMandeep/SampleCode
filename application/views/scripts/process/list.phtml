@@ -1,0 +1,52 @@
+<div class="span12">	
+	<div class="box">
+			<div class="box-content">
+				<div id="dataTables">
+					<table class="dTable">  
+					 <thead> 
+						<tr>
+							<th class='type'>
+								<div>Type</div>
+							</th>
+							<th class='employee'>
+								<div>Employee &nbsp;&nbsp;&nbsp;</div>
+							</th>
+							<th class='date'>
+								<div>Process Date</div>
+							</th>
+							<th class='weight'>
+								<div>Weight &nbsp;&nbsp;&nbsp;</div>
+							</th>
+							<th class='notes'>
+								<div>Customer Notes</div>
+							</th>
+							<th class='notes'>
+								<div>General Notes</div>
+							</th>
+							<th class='id_number'>
+								<div>ID Number</div>
+							</th>
+						</tr>
+						</thead>
+						<tbody> 
+							<?php foreach ($this->recoveries as $key => $recovery): ?>
+							<tr>
+								<td>
+									<a href = "/index/scan/serial_number/<?php echo $recovery['serial_number']?>">
+										<?php echo Application_Model_Recovery::mapNameType($recovery['recovery_type']); ?>
+									</a>
+								</td>
+								<td><?php echo $recovery['firstname'].' '.$recovery['lastname'] ?></td>
+								<td><?php echo $this->Date($recovery['processed_date']) ?></td>
+								<td><?php echo $recovery['weight'] ?></td>
+								<td><?php echo $recovery['checkin_notes'] ?></td>
+								<td><?php echo $recovery['general_notes'] ?></td>
+								<td><?php echo $recovery['serial_number'] ?></td>
+							</tr>	
+							<?php endforeach ?>
+						 </tbody> 
+					 </table>  
+				</div>
+			</div>
+		</div>
+</div>
